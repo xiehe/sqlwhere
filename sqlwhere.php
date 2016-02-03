@@ -3,11 +3,11 @@ function whereGenerate($where, $concat = 'AND') {
 		$whereAssembly = function (&$val, $key) {
 			if (is_numeric($key)) {
 				// [[k1=>v1],[k2=>v2]]
-				$val = self::whereGenerate($val, 'AND');
+				$val = whereGenerate($val, 'AND');
 			} elseif (!is_array($val)) {
 				$val = " $key = '{$val}' ";
 			} elseif (in_array($key, ['AND', 'OR'])) {
-				$val = self::whereGenerate($val, $key);
+				$val = whereGenerate($val, $key);
 			} else {
 				$curKey = key($val);
 				$curVal = current($val);
